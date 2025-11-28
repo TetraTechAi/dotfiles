@@ -1,2 +1,8 @@
 # github-copilot
 github-copilot/
+
+# Config directories not to track
+btop/
+chezmoi/
+composer/
+gh/
