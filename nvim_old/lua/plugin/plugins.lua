@@ -123,9 +123,8 @@ return {
     lazy = false,
     config = function()
       require('lualine').setup{
-        options = {
-          theme = 'tokyonight-moon'
-        }
+        -- options = {
+        --   theme = 'tokyonight-moon'
       }
     end
   },

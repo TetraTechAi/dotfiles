@@ -1,5 +1,5 @@
 local options = {
-  -- General
+  -- 一般
 	encoding = 'utf-8',
 	fileencoding = 'utf-8',
 	number = true,
@@ -10,14 +10,14 @@ local options = {
 	cmdheight = 2,
   termguicolors = true,
 
-  -- Indent
+  -- インデント
 	shiftwidth = 2,
 	tabstop = 2,
   softtabstop = 2,
 	expandtab = true,
   smartindent = true,
 
-  -- Search
+  -- 検索
   showmatch = true,
   ignorecase = true,
   smartcase = true,
@@ -26,7 +26,7 @@ local options = {
   incsearch = true,
   inccommand = split,
 
-  -- completion
+  -- 補完
   wildmode = 'list:longest',
   infercase = true,
   wildmenu = true,
