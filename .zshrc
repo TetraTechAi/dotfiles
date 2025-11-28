@@ -1,6 +1,7 @@
+# CodeWhisperer pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
 ##############
-#    main    
-##############
+#    main #############
 
 # Don't Ctrl+D
 setopt IGNOREEOF
@@ -101,7 +102,8 @@ alias vim='nvim'
 export EDITOR=nvim
 
 # nvim config file
-export XDG_CONFIG_HOME=~/dotfile
+# export XDG_CONFIG_HOME=~/dotfile
+export XDG_CONFIG_HOME=~/.config
 
 
 ############
@@ -115,7 +117,7 @@ eval "$(sheldon source)"
 
 ############
 # function
-############ 
+############
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -194,13 +196,13 @@ eval "$(zoxide init zsh)"
 alias cd='z'
 
 # exa
-if [[ $(command -v exa) ]]; then
-  alias ls='exa --git --icons'
-  alias ll='exa -l --git --icons'
-  alias la='exa -la --git --icons'
-  alias lta='exa -lT --git --icons'
-  alias lt='exa -T --git --icons'
-fi
+#if [[ $(command -v exa) ]]; then
+#  alias ls='exa --git --icons'
+#  alias ll='exa -l --git --icons'
+#  alias la='exa -la --git --icons'
+#  alias lta='exa -lT --git --icons'
+#  alias lt='exa -T --git --icons'
+#fi
 
 # cdls
 cdls()
@@ -209,6 +211,25 @@ cdls()
 }
 alias cd='cdls'
 
+# CodeWhisperer post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
 
+PATH=~/.console-ninja/.bin:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
+# Added by Windsurf
+export PATH="/Users/nakayamaseiya/.codeium/windsurf/bin:$PATH"
 
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/nakayamaseiya/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+. "$HOME/.local/bin/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/nakayamaseiya/.lmstudio/bin"
+# End of LM Studio CLI section
+
+#source /Users/nakayamaseiya/work/git/github.com/TetraTechAi/claude-code-test/scripts/claude-optimization.sh

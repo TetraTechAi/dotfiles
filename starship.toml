@@ -1,5 +1,3 @@
-[prompt]
-scan_timeout = 10
 add_newline = false
 
 [character]
@@ -12,10 +10,8 @@ truncate_to_repo = false
 truncation_symbol = "…/"
 
 [aws]
-format = 'on [$sybol($profile )(\($region\) )]($style)'
+format = 'on [$symbol($profile )(\($region\) )]($style)'
 style = 'bold blue'
 
 [battery]
 disabled = true
-
-
