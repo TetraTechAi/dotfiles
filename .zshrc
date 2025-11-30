@@ -1,85 +1,85 @@
 # CodeWhisperer pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
 ##############
-#    main #############
+#    メイン設定 #############
 
-# Don't Ctrl+D
+# Ctrl+Dでログアウトしない
 setopt IGNOREEOF
 
-# Use Japanese
+# 日本語使用
 export LANG=ja_JP.UTF-8
 
-# User colors
+# 色の使用
 autoload -Uz colors
 colors
 
-# Use compinit
+# 補完機能の使用
 autoload -Uz compinit
 compinit
 
-# No cd move
+# cdなしでディレクトリ移動
 setopt auto_cd
 
-# Keybind
+# キーバインド（Viモード）
 bindkey -v
 
-# push
+# ディレクトリスタック
 setopt auto_pushd
 setopt pushd_ignore_dups
 
-# spel check
+# スペルチェック
 setopt correct
 
-# clobber
+# ファイル上書き防止
 setopt no_clobber
 
-# history file
+# ヒストリーファイル
 HISTFILE=~/.zsh_history
 
-# history size
+# ヒストリーサイズ
 export HISTSIZE=10000
 
-# history file size
+# ヒストリーファイルサイズ
 export SAVEHIST=10000
 
-# history ignore dumps
+# 重複したコマンドを無視
 setopt hist_ignore_dups
 
-# history ignore all dups
+# すべての重複を無視
 setopt hist_ignore_all_dups
 
-# history ignore space
+# スペースで始まるコマンドを無視
 setopt hist_ignore_space
 
-# history verify
+# ヒストリー実行前に確認
 setopt hist_verify
 
-# history share
+# ヒストリーを共有
 setopt share_history
 
-# history start timestamp
+# ヒストリーにタイムスタンプを記録
 setopt extended_history
 
-# history timestamp format
+# タイムスタンプフォーマット
 HIST_STAMPS="yyyy-mm-dd"
 
-# history ignore same
+# 余分な空白を削除
 setopt hist_reduce_blanks
 
-# history isno store
+# historyコマンド自体は保存しない
 setopt hist_no_store
 
-# history expand
+# ヒストリー展開を有効化
 setopt hist_expand
 
-# history append incrimental
+# 履歴をインクリメンタルに追加
 setopt inc_append_history
 
 
 
 
 ##############
-# alias
+# エイリアス
 ##############
 
 # ls
@@ -87,7 +87,7 @@ alias ls='ls -l --color=auto'
 alias ll='ls -alF --color=auto'
 
 # cd
-alias d='cd ~/dotfile'
+alias d='cd ~/dotfiles'
 
 # neovim
 alias vi='nvim'
@@ -95,44 +95,45 @@ alias vim='nvim'
 
 
 #############
-# Export
+# 環境変数
 #############
 
-# Editor
+# エディタ
 export EDITOR=nvim
 
-# nvim config file
-# export XDG_CONFIG_HOME=~/dotfile
+# nvim設定ファイルの場所
+# export XDG_CONFIG_HOME=~/dotfiles
 export XDG_CONFIG_HOME=~/.config
 
 
 ############
-# evaluate
+# 評価
 ############
 
-# Load Sheldon
+# Sheldon読み込み
 eval "$(sheldon source)"
 
 
 
 ############
-# function
+# 関数
 ############
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
-# Shell Integration済みであること
+# iTerm2 Shell Integration（要事前設定）
 iterm2_print_user_vars() {
   iterm2_set_user_var test $(badge)
 }
 
-# badge
+# バッジ表示
 function badge() {
   printf "\e]1337;SetBadgeFormat=%s\a"\
   $(echo -n "$1" | base64)
 }
 
+# SSH接続（fzfでサーバー選択）
 function ssh_local() {
   local ssh_config=~/.ssh/config
   local server=$(cat $ssh_config | grep "Host " | sed "s/Host //g" | fzf)
@@ -143,7 +144,7 @@ function ssh_local() {
   ssh $server
 }
 
-# peco
+# pecoでヒストリー検索（Ctrl+R）
 function peco-history-selection() {
   BUFFER=`history -n 1 | tac -r  | awk '!a[$0]++' | peco`
   CURSOR=$#BUFFER
@@ -153,7 +154,7 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
-# cdr
+# cdr（最近訪れたディレクトリ）
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
   autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
   add-zsh-hook chpwd chpwd_recent_dirs
@@ -163,7 +164,7 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
   zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
 fi
 
-# peco-cdr
+# pecoで最近訪れたディレクトリに移動（Ctrl+E）
 function peco-cdr () {
   local selected_dir="$(cdr -l | awk '{$1=""; sub(" ", ""); print $0}' | peco --prompt="cdr >" --query "$LBUFFER")"
   if [ -n "$selected_dir" ]; then
@@ -174,7 +175,7 @@ function peco-cdr () {
 zle -N peco-cdr
 bindkey '^E' peco-cdr
 
-## ghq
+# ghqで管理しているリポジトリに移動（Ctrl+X）
 function peco-src () {
   local selected_dir=$(ghq list -p | peco --prompt="repositories >" --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
@@ -187,15 +188,15 @@ zle -N peco-src
 bindkey '^X' peco-src
 
 
-# starship
+# Starshipプロンプト
 eval "$(starship init zsh)"
 
 
-# zoxide
+# zoxide（スマートcd）
 eval "$(zoxide init zsh)"
 alias cd='z'
 
-# exa
+# exa（モダンなls代替）
 #if [[ $(command -v exa) ]]; then
 #  alias ls='exa --git --icons'
 #  alias ll='exa -l --git --icons'
@@ -204,7 +205,7 @@ alias cd='z'
 #  alias lt='exa -T --git --icons'
 #fi
 
-# cdls
+# cd後に自動でls実行
 cdls()
 {
   \cd "$@" && ls
