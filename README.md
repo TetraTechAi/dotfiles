@@ -21,6 +21,7 @@
 | `.zshrc` | Zsh設定ファイル | `~/.zshrc` |
 | `starship.toml` | Starshipプロンプト設定 | `~/.config/starship.toml` |
 | `wezterm/` | WezTerm端末エミュレータ設定 | `~/.config/wezterm` |
+| `nvim/` | Neovim設定ファイル | `~/.config/nvim` |
 
 ## 🔧 必要要件
 
@@ -29,6 +30,7 @@
 - **Git** - リポジトリのクローン
 - **Zsh** - シェル
 - **Tmux** - ターミナルマルチプレクサ
+- **Neovim** - テキストエディタ ([インストール手順](https://github.com/neovim/neovim/wiki/Installing-Neovim))
 - **Starship** - プロンプトカスタマイズ ([インストール手順](https://starship.rs/guide/#%F0%9F%9A%80-installation))
 - **WezTerm** - ターミナルエミュレータ ([インストール手順](https://wezfurlong.org/wezterm/install/macos.html))
 
@@ -43,7 +45,7 @@
 
 ```bash
 cd ~
-git clone git@github.com:TetraTechAi/dotfile.git
+git clone git@github.com:TetraTechAi/dotfiles.git
 ```
 
 ### 2. シンボリックリンクの作成
@@ -51,7 +53,7 @@ git clone git@github.com:TetraTechAi/dotfile.git
 #### 自動セットアップ（推奨）
 
 ```bash
-cd ~/dotfile
+cd ~/dotfiles
 ./link.sh
 ```
 
@@ -60,7 +62,7 @@ cd ~/dotfile
 実際に変更を加える前に、何が実行されるか確認できます：
 
 ```bash
-cd ~/dotfile
+cd ~/dotfiles
 ./link.sh -d
 ```
 
@@ -69,10 +71,10 @@ cd ~/dotfile
 自動セットアップを使わない場合は、以下のコマンドで手動リンク：
 
 ```bash
-ln -s ~/dotfile/.tmux.conf ~/.tmux.conf
-ln -s ~/dotfile/.zshrc ~/.zshrc
-ln -s ~/dotfile/starship.toml ~/.config/starship.toml
-ln -s ~/dotfile/wezterm ~/.config/wezterm
+ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
+ln -s ~/dotfiles/wezterm ~/.config/wezterm
 ```
 
 ### 3. 設定の反映
@@ -113,7 +115,7 @@ exec zsh
 設定ファイルを変更した後：
 
 ```bash
-cd ~/dotfile
+cd ~/dotfiles
 
 # 変更を確認
 git status
@@ -134,10 +136,10 @@ git push origin develop
 
 ```bash
 # クローン
-git clone git@github.com:TetraTechAi/dotfile.git ~/dotfile
+git clone git@github.com:TetraTechAi/dotfiles.git ~/dotfiles
 
 # セットアップ
-cd ~/dotfile
+cd ~/dotfiles
 ./link.sh
 
 # 設定を反映
