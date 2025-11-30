@@ -21,6 +21,7 @@
 | `.zshrc` | Zsh設定ファイル | `~/.zshrc` |
 | `starship.toml` | Starshipプロンプト設定 | `~/.config/starship.toml` |
 | `wezterm/` | WezTerm端末エミュレータ設定 | `~/.config/wezterm` |
+| `nvim/` | Neovim設定ファイル | `~/.config/nvim` |
 
 ## 🔧 必要要件
 
@@ -29,6 +30,7 @@
 - **Git** - リポジトリのクローン
 - **Zsh** - シェル
 - **Tmux** - ターミナルマルチプレクサ
+- **Neovim** - テキストエディタ ([インストール手順](https://github.com/neovim/neovim/wiki/Installing-Neovim))
 - **Starship** - プロンプトカスタマイズ ([インストール手順](https://starship.rs/guide/#%F0%9F%9A%80-installation))
 - **WezTerm** - ターミナルエミュレータ ([インストール手順](https://wezfurlong.org/wezterm/install/macos.html))
 

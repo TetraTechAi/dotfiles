@@ -1,0 +1,37 @@
+------------------------------------------------------------------------------
+-- 基本オプション
+------------------------------------------------------------------------------
+
+-- 行番号
+vim.opt.number = true
+
+-- タイトル
+vim.opt.title = true
+
+-- 括弧の連携
+vim.opt.showmatch = true
+
+-- ヘルプファイル
+vim.opt.helplang = 'ja'
+
+-- インデント
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+-- ヤンクのレジスタを共通にする
+vim.opt.clipboard = 'unnamedplus'
+
+-- 検索
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- ステータスライン
+vim.opt.laststatus = 3
+
+-- カーソル行のハイライト
+vim.opt.cursorline = true
+
+-- 見た目
+vim.opt.background = 'dark'
+vim.opt.termguicolors = true

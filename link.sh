@@ -30,6 +30,7 @@ LINKS=(
   "$HOME/.zshrc:$DOTFILE_DIR/.zshrc"
   "$HOME/.config/starship.toml:$DOTFILE_DIR/starship.toml"
   "$HOME/.config/wezterm:$DOTFILE_DIR/wezterm"
+  "$HOME/.config/nvim:$DOTFILE_DIR/nvim"
 )
 
 # 色定義
