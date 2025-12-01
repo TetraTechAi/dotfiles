@@ -158,15 +158,15 @@ function ssh_local() {
   ssh "$server"
 }
 
-# pecoでヒストリー検索（Ctrl+R）
-function peco-history-selection() {
-  BUFFER=`history -n 1 | tac -r  | awk '!a[$0]++' | peco`
+# fzfでヒストリー検索（Ctrl+R）
+function fzf-history-selection() {
+  BUFFER=$(history -n 1 | tac -r | awk '!a[$0]++' | fzf --prompt="History > " --height=40% --reverse)
   CURSOR=$#BUFFER
   zle reset-prompt
 }
 
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
+zle -N fzf-history-selection
+bindkey '^R' fzf-history-selection
 
 # cdr（最近訪れたディレクトリ）
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
@@ -178,28 +178,28 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
   zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
 fi
 
-# pecoで最近訪れたディレクトリに移動（Ctrl+E）
-function peco-cdr () {
-  local selected_dir="$(cdr -l | awk '{$1=""; sub(" ", ""); print $0}' | peco --prompt="cdr >" --query "$LBUFFER")"
+# fzfで最近訪れたディレクトリに移動（Ctrl+E）
+function fzf-cdr () {
+  local selected_dir="$(cdr -l | awk '{$1=""; sub(" ", ""); print $0}' | fzf --prompt="cdr > " --query="$LBUFFER" --height=40% --reverse)"
   if [ -n "$selected_dir" ]; then
     BUFFER="cd ${selected_dir}"
     zle accept-line
   fi
 }
-zle -N peco-cdr
-bindkey '^E' peco-cdr
+zle -N fzf-cdr
+bindkey '^E' fzf-cdr
 
 # ghqで管理しているリポジトリに移動（Ctrl+X）
-function peco-src () {
-  local selected_dir=$(ghq list -p | peco --prompt="repositories >" --query "$LBUFFER")
+function fzf-src () {
+  local selected_dir=$(ghq list -p | fzf --prompt="repositories > " --query="$LBUFFER" --height=40% --reverse)
   if [ -n "$selected_dir" ]; then
     BUFFER="cd ${selected_dir}"
     zle accept-line
   fi
   zle clear-screen
 }
-zle -N peco-src
-bindkey '^X' peco-src
+zle -N fzf-src
+bindkey '^X' fzf-src
 
 
 # Starshipプロンプト
