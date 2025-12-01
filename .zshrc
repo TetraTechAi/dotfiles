@@ -133,15 +133,29 @@ function badge() {
   $(echo -n "$1" | base64)
 }
 
-# SSH接続（fzfでサーバー選択）
+# SSH接続（fzfでサーバー選択、config.d対応）
 function ssh_local() {
-  local ssh_config=~/.ssh/config
-  local server=$(cat $ssh_config | grep "Host " | sed "s/Host //g" | fzf)
+  local config_files=("$HOME/.ssh/config")
+
+  # config.dディレクトリが存在する場合、*.configファイルを追加
+  if [[ -d "$HOME/.ssh/config.d" ]]; then
+    config_files+=("$HOME/.ssh/config.d"/*.config(N))
+  fi
+
+  # 全ての設定ファイルからHost定義を抽出
+  local server=$(cat "${config_files[@]}" 2>/dev/null | \
+    grep "^Host " | \
+    sed "s/^Host //g" | \
+    grep -v '\*' | \
+    sort -u | \
+    fzf)
+
   if [ -z "$server" ]; then
     return
   fi
-  badge $server
-  ssh $server
+
+  badge "$server"
+  ssh "$server"
 }
 
 # pecoでヒストリー検索（Ctrl+R）
