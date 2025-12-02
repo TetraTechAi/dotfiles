@@ -24,7 +24,10 @@ return {
         },
       })
 
-      -- 自動インストールするLSPサーバー
+      -- Capabilities設定
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+      -- 自動インストール + ハンドラー設定
       require('mason-lspconfig').setup({
         ensure_installed = {
           'lua_ls',           -- Lua
@@ -38,72 +41,72 @@ return {
           'yamlls',           -- YAML
         },
         automatic_installation = true,
-      })
+        handlers = {
+          -- デフォルトハンドラー（全サーバー共通）
+          function(server_name)
+            require('lspconfig')[server_name].setup({
+              capabilities = capabilities,
+            })
+          end,
 
-      -- LSP設定
-      local lspconfig = require('lspconfig')
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
+          -- lua_ls専用設定
+          ['lua_ls'] = function()
+            require('lspconfig').lua_ls.setup({
+              capabilities = capabilities,
+              settings = {
+                Lua = {
+                  diagnostics = {
+                    globals = { 'vim' },
+                  },
+                  workspace = {
+                    library = vim.api.nvim_get_runtime_file('', true),
+                    checkThirdParty = false,
+                  },
+                  telemetry = {
+                    enable = false,
+                  },
+                },
+              },
+            })
+          end,
 
-      -- デフォルトのLSP設定
-      local default_setup = function(server)
-        lspconfig[server].setup({
-          capabilities = capabilities,
-        })
-      end
+          -- ts_ls専用設定
+          ['ts_ls'] = function()
+            require('lspconfig').ts_ls.setup({
+              capabilities = capabilities,
+              settings = {
+                typescript = {
+                  inlayHints = {
+                    includeInlayParameterNameHints = 'all',
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
+                  },
+                },
+              },
+            })
+          end,
 
-      -- 個別のLSP設定
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { 'vim' },
-            },
-            workspace = {
-              library = vim.api.nvim_get_runtime_file('', true),
-              checkThirdParty = false,
-            },
-            telemetry = {
-              enable = false,
-            },
-          },
+          -- pyright専用設定
+          ['pyright'] = function()
+            require('lspconfig').pyright.setup({
+              capabilities = capabilities,
+              settings = {
+                python = {
+                  analysis = {
+                    typeCheckingMode = 'basic',
+                    autoSearchPaths = true,
+                    useLibraryCodeForTypes = true,
+                  },
+                },
+              },
+            })
+          end,
         },
       })
-
-      lspconfig.ts_ls.setup({
-        capabilities = capabilities,
-        settings = {
-          typescript = {
-            inlayHints = {
-              includeInlayParameterNameHints = 'all',
-              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayVariableTypeHints = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
-            },
-          },
-        },
-      })
-
-      lspconfig.pyright.setup({
-        capabilities = capabilities,
-        settings = {
-          python = {
-            analysis = {
-              typeCheckingMode = 'basic',
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
-            },
-          },
-        },
-      })
-
-      -- その他のサーバーはデフォルト設定
-      for _, server in ipairs({ 'gopls', 'rust_analyzer', 'html', 'cssls', 'jsonls', 'yamlls' }) do
-        default_setup(server)
-      end
 
       -- 診断表示設定
       vim.diagnostic.config({
