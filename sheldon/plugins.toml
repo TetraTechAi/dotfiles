@@ -20,8 +20,3 @@ github = "zsh-users/zsh-syntax-highlighting"
 
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
-
-[plugins.peco]
-github = "peco/peco"
-
-

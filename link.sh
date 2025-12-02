@@ -31,6 +31,7 @@ LINKS=(
   "$HOME/.config/starship.toml:$DOTFILE_DIR/starship.toml"
   "$HOME/.config/wezterm:$DOTFILE_DIR/wezterm"
   "$HOME/.config/nvim:$DOTFILE_DIR/nvim"
+  "$HOME/.config/sheldon:$DOTFILE_DIR/sheldon"
 )
 
 # 色定義
