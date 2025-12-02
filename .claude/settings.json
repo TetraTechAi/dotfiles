@@ -1,0 +1,45 @@
+{
+  "modelSettings": {
+    "temperature": 0.0,
+    "maxTokens": 8192
+  },
+  "toolSettings": {
+    "bash": {
+      "timeout" : 120000,
+      "sandboxEnabled": true,
+      "allowedCommands": ["npm", "git", "node"]
+    }
+  },
+  "permissions": {
+    "allow": [
+      "Read(~/.zhrc)"
+    ],
+    "ask": [
+      "Bash(git push:*)"
+    ],
+    "deny": [
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(sudo:*)",
+      "Read(.env.*)",
+      "Bash(git config *)",
+      "Bash(chmod 777 *)",
+      "Bash(rm -rf /*)",
+      "Bash(gh repo delete:*)"
+    ],
+    "defaultMode": "plan"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/scripts/deny-check.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
