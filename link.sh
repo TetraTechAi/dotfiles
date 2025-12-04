@@ -32,6 +32,7 @@ LINKS=(
   "$HOME/.config/wezterm:$DOTFILE_DIR/wezterm"
   "$HOME/.config/nvim:$DOTFILE_DIR/nvim"
   "$HOME/.config/sheldon:$DOTFILE_DIR/sheldon"
+  "$HOME/.config/yazi:$DOTFILE_DIR/yazi"
   "$HOME/.claude/settings.json:$DOTFILE_DIR/.claude/settings.json"
 )
 
@@ -215,6 +216,15 @@ echo "==========================================================================
 if [ "$DRY_RUN" = true ]; then
   echo ""
   log_info "To actually create the links, run: $0"
+else
+  echo ""
+  log_info "Reloading zshrc..."
+  if [ -n "$ZSH_VERSION" ]; then
+    source ~/.zshrc
+    log_success "zshrc reloaded"
+  else
+    log_info "Run 'source ~/.zshrc' to apply changes (current shell is not zsh)"
+  fi
 fi
 
 exit 0
