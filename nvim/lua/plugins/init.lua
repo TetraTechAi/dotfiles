@@ -24,6 +24,8 @@ require('lazy').setup({
   { import = 'plugins.lsp' },
   { import = 'plugins.completion' },
   { import = 'plugins.gitsigns' },
+  { import = 'plugins.yazi' },
+  { import = 'plugins.peek' },
 }, {
   -- lazy.nvim UI設定
   ui = {
