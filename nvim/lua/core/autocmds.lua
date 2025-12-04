@@ -38,15 +38,18 @@ autocmd('BufReadPost', {
 -- 3. ファイルタイプ別の設定
 ------------------------------------------------------------------------------
 
--- Web開発: 2スペースインデント
+-- Web開発: 2スペースインデント（JSONは除外 - ftpluginで管理）
 autocmd('FileType', {
   group = augroup('web_indent', { clear = true }),
   pattern = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact',
-              'html', 'css', 'scss', 'json', 'yaml', 'vue', 'svelte' },
+              'html', 'css', 'scss', 'yaml', 'vue', 'svelte' },
   callback = function()
     vim.opt_local.tabstop = 2
     vim.opt_local.shiftwidth = 2
     vim.opt_local.softtabstop = 2
+    vim.opt_local.expandtab = true
+    vim.opt_local.autoindent = true
+    vim.opt_local.smartindent = true
   end,
   desc = 'Web開発ファイル: 2スペースインデント',
 })

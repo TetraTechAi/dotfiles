@@ -32,6 +32,7 @@ LINKS=(
   "$HOME/.config/wezterm:$DOTFILE_DIR/wezterm"
   "$HOME/.config/nvim:$DOTFILE_DIR/nvim"
   "$HOME/.config/sheldon:$DOTFILE_DIR/sheldon"
+  "$HOME/.claude/settings.json:$DOTFILE_DIR/.claude/settings.json"
 )
 
 # 色定義

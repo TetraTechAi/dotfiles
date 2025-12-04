@@ -15,6 +15,9 @@ local config = wezterm.config_builder()
 -- 設定ファイルの自動リロードを有効化
 config.automatically_reload_config = true
 
+-- システムベル音を有効化（Claude Codeタスク完了通知用）
+config.audible_bell = "SystemBeep"
+
 -- WezTermの更新チェックを有効化
 config.check_for_updates = true
 -- 更新チェックの間隔を86400秒(24時間)に設定
@@ -58,12 +61,6 @@ config.window_background_opacity = 0.75
 
 -- macOSのウィンドウ背景ブラー効果を無効化(0=なし)
 config.macos_window_background_blur = 0
-
--- ウィンドウ背景のグラデーション設定
-config.window_background_gradient = {
-  -- 黒色(#000000)を使用
-  colors = { "#000000" }
-}
 
 -- カラー設定
 config.colors = {
@@ -193,6 +190,11 @@ config.keys = {
     -- ウィンドウ操作
     -- ------------------------------------------------------------------------
     { key = 'Enter', mods = 'CMD', action = wezterm.action.ToggleFullScreen },  -- Cmd+Enter: フルスクリーン切り替え
+
+    -- ------------------------------------------------------------------------
+    -- Claude Code用設定
+    -- ------------------------------------------------------------------------
+    { key = 'Enter', mods = 'SHIFT', action = wezterm.action.SendString('\n') },  -- Shift+Enter: 改行文字を送信（複数行入力用）
 }
 
 
