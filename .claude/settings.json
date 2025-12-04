@@ -18,14 +18,14 @@
       "Bash(git push:*)"
     ],
     "deny": [
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(sudo:*)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
+      "Bash(sudo *)",
       "Read(.env.*)",
       "Bash(git config *)",
       "Bash(chmod 777 *)",
       "Bash(rm -rf /*)",
-      "Bash(gh repo delete:*)"
+      "Bash(gh repo delete*)"
     ],
     "defaultMode": "plan"
   },
@@ -36,7 +36,27 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/scripts/deny-check.sh"
+            "command": "/Users/nakayamaseiya/.claude/scripts/deny-check.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/nakayamaseiya/.claude/scripts/completion-notification.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/nakayamaseiya/.claude/scripts/notification.sh"
           }
         ]
       }
