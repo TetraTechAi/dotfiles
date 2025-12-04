@@ -270,3 +270,26 @@ Neovim内からyaziを呼び出すことができます。
 
 yaziでファイルを選択すると、Neovimでそのファイルが開きます。
 
+### Markdown Preview (peek.nvim)
+
+Markdownファイルをブラウザでライブプレビューできます。
+
+**機能:**
+- ライブプレビュー（リアルタイム更新）
+- 同期スクロール
+- TeX数式対応
+- Mermaid図対応
+- GitHub風スタイル
+
+**キーマッピング:**
+| キー | 動作 |
+|------|------|
+| `<Space>mp` | Markdownプレビューを開く |
+| `<Space>mc` | Markdownプレビューを閉じる |
+
+**コマンド:**
+```vim
+:PeekOpen   " プレビューを開く
+:PeekClose  " プレビューを閉じる
+```
+

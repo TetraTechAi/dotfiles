@@ -47,6 +47,7 @@ brew "git-secrets"        # シークレットスキャン
 brew "tig"                # Git TUI
 
 # 開発言語・ランタイム
+brew "deno"               # JavaScript/TypeScriptランタイム
 brew "go"                 # Go言語
 brew "node"               # Node.js
 brew "pnpm"               # Node.jsパッケージマネージャー
