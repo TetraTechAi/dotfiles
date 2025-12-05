@@ -138,19 +138,6 @@ cask "kiro-cli"           # AI CLI
 cask "font-hack-nerd-font"          # Nerd Font (Hack)
 cask "font-symbols-only-nerd-font"  # Nerd Font (Symbols Only)
 
-# ============================================================================
-# Mac App Store
-# ============================================================================
-
-mas "Keynote", id: 409183694
-mas "Kindle", id: 302584613
-mas "Magnet", id: 441258766
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Perplexity", id: 6714467650
-mas "RunCat", id: 1429033973
-mas "Slack", id: 803453959
-mas "Xcode", id: 497799835
 
 # ============================================================================
 # VS Code Extensions
