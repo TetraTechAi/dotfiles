@@ -33,6 +33,7 @@ require('lazy').setup({
   { import = 'plugins.yazi' },
   { import = 'plugins.peek' },
   { import = 'plugins.live-server' },
+  { import = 'plugins.copilot' },
 }, {
   -- lazy.nvim UI設定
   ui = {

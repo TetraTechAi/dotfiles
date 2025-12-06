@@ -299,6 +299,7 @@ yy
 | yazi.nvim | ファイルマネージャー統合 |
 | peek.nvim | Markdownプレビュー |
 | live-server.nvim | HTMLライブプレビュー |
+| copilot.lua | GitHub Copilot AI補完 |
 
 #### キーマッピング
 
@@ -526,6 +527,38 @@ yy
 | `<Space>tt` | ターミナル起動 |
 | `<Space>tv` | ターミナル（垂直分割） |
 | `<Space>th` | ターミナル（水平分割） |
+
+##### GitHub Copilot (copilot.lua)
+
+AIによるコード補完。初回は `:Copilot auth` でGitHubアカウント認証が必要。
+
+**インライン補完:**
+| キー | 動作 |
+|------|------|
+| `<M-l>` (Alt+l) | 提案を受け入れ |
+| `<M-w>` (Alt+w) | 単語単位で受け入れ |
+| `<M-j>` (Alt+j) | 行単位で受け入れ |
+| `<M-]>` (Alt+]) | 次の提案 |
+| `<M-[>` (Alt+[) | 前の提案 |
+| `<C-]>` (Ctrl+]) | 提案を却下 |
+
+**パネル操作:**
+| キー | 動作 |
+|------|------|
+| `<C-CR>` (Ctrl+Enter) | 候補一覧パネルを開く |
+| `[[` / `]]` | パネル内で前/次の候補 |
+| `<CR>` | 候補を選択 |
+| `gr` | 候補を更新 |
+
+**コマンド:**
+```vim
+:Copilot auth     " GitHubアカウントで認証（初回のみ）
+:Copilot status   " 接続状態を確認
+:Copilot enable   " Copilotを有効化
+:Copilot disable  " Copilotを無効化
+:Copilot toggle   " Copilotをトグル
+:Copilot panel    " パネルを開く
+```
 
 ##### その他
 
