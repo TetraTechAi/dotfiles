@@ -123,7 +123,23 @@ vim.keymap.set('n', '<leader>tv', '<cmd>vsplit | terminal<CR>', { desc = 'ター
 vim.keymap.set('n', '<leader>th', '<cmd>split | terminal<CR>', { desc = 'ターミナル(水平分割)' })
 
 ------------------------------------------------------------------------------
--- 7. その他便利機能
+-- 7. ファイルプレビュー
+------------------------------------------------------------------------------
+
+-- 現在のファイルをブラウザで開く
+vim.keymap.set('n', '<leader>op', function()
+  local file = vim.fn.expand('%:p')
+  local ft = vim.bo.filetype
+  if ft == 'html' or ft == 'markdown' then
+    vim.fn.system('open ' .. vim.fn.shellescape(file))
+    vim.notify('Opened in browser: ' .. file, vim.log.levels.INFO)
+  else
+    vim.notify('Not a previewable file type: ' .. ft, vim.log.levels.WARN)
+  end
+end, { desc = 'ブラウザでプレビュー' })
+
+------------------------------------------------------------------------------
+-- 8. その他便利機能
 ------------------------------------------------------------------------------
 
 -- カーソル位置を保持したままファイル全体をインデント

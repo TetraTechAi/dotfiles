@@ -26,9 +26,13 @@ require('lazy').setup({
   { import = 'plugins.lsp' },
   { import = 'plugins.completion' },
   { import = 'plugins.autopairs' },
+  { import = 'plugins.autotag' },
+  { import = 'plugins.surround' },
+  { import = 'plugins.comment' },
   { import = 'plugins.gitsigns' },
   { import = 'plugins.yazi' },
   { import = 'plugins.peek' },
+  { import = 'plugins.live-server' },
 }, {
   -- lazy.nvim UI設定
   ui = {
