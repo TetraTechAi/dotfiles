@@ -258,9 +258,233 @@ yy
 | `d` | 削除 |
 | `r` | リネーム |
 
-#### Neovim内での使い方 (yazi.nvim)
+### Neovim (nvim/)
 
-Neovim内からyaziを呼び出すことができます。
+モダンなテキストエディタNeovimの設定です。プラグイン管理にlazy.nvimを使用し、IDE的な機能を提供します。
+
+#### 対応言語
+
+**LSP（言語サーバー）対応:**
+- スクリプト言語: Lua, JavaScript/TypeScript, Python, PHP
+- コンパイル言語: Go, Rust, C/C++
+- Web: HTML, CSS, Tailwind CSS, Emmet
+- データ/設定: JSON, YAML, TOML
+- インフラ: Bash, Dockerfile, Docker Compose, Terraform
+
+**Treesitter（構文ハイライト）対応:**
+- スクリプト: lua, javascript, typescript, tsx, python, php, ruby
+- コンパイル: go, gomod, gosum, rust, c, cpp
+- Web: html, css, scss
+- データ: json, jsonc, yaml, toml, xml
+- シェル/インフラ: bash, dockerfile, terraform, hcl
+- ドキュメント: markdown, markdown_inline
+- その他: vim, vimdoc, regex, query, git_config, gitcommit, gitignore, diff
+
+#### プラグイン一覧
+
+| プラグイン | 説明 |
+|-----------|------|
+| lazy.nvim | プラグインマネージャー |
+| tokyonight.nvim | カラースキーム |
+| lualine.nvim | ステータスライン |
+| nvim-treesitter | 構文ハイライト・テキストオブジェクト |
+| telescope.nvim | ファジーファインダー |
+| nvim-lspconfig + Mason | LSPサーバー管理 |
+| nvim-cmp | 自動補完 |
+| nvim-autopairs | 括弧・クォート自動補完 |
+| nvim-ts-autotag | HTMLタグ自動補完 |
+| nvim-surround | 囲み文字操作 |
+| Comment.nvim | コメントトグル |
+| gitsigns.nvim | Git統合 |
+| yazi.nvim | ファイルマネージャー統合 |
+| peek.nvim | Markdownプレビュー |
+| live-server.nvim | HTMLライブプレビュー |
+
+#### キーマッピング
+
+リーダーキー: `<Space>`
+
+##### 基本操作
+
+| キー | モード | 動作 |
+|------|--------|------|
+| `<Esc>` | Normal | 検索ハイライト解除 |
+| `<C-s>` | Normal/Insert | ファイル保存 |
+| `<C-q>` | Normal | 終了 |
+| `J` | Visual | 選択行を下に移動 |
+| `K` | Visual | 選択行を上に移動 |
+| `<` / `>` | Visual | インデント増減（選択維持） |
+| `H` | Normal/Visual | 行頭へ移動 |
+| `L` | Normal/Visual | 行末へ移動 |
+| `<C-d>` | Normal | 半画面下へ（中央揃え） |
+| `<C-u>` | Normal | 半画面上へ（中央揃え） |
+
+##### ウィンドウ操作
+
+| キー | 動作 |
+|------|------|
+| `<Space>wv` | 垂直分割 |
+| `<Space>wh` | 水平分割 |
+| `<Space>wc` | ウィンドウを閉じる |
+| `<Space>wo` | 他のウィンドウを閉じる |
+| `<C-h/j/k/l>` | ウィンドウ間移動 |
+| `<C-Up/Down/Left/Right>` | ウィンドウリサイズ |
+
+##### バッファ操作
+
+| キー | 動作 |
+|------|------|
+| `<Space>bn` | 次のバッファ |
+| `<Space>bp` | 前のバッファ |
+| `<Space>bd` | バッファ削除 |
+| `<Space>ba` | 他のバッファを全削除 |
+
+##### LSP操作
+
+| キー | 動作 |
+|------|------|
+| `gd` | 定義へジャンプ |
+| `gD` | 宣言へジャンプ |
+| `gr` | 参照一覧 |
+| `gi` | 実装へジャンプ |
+| `gt` | 型定義へジャンプ |
+| `K` | ホバー情報表示 |
+| `<C-k>` | シグネチャヘルプ |
+| `<Space>ca` | コードアクション |
+| `<Space>rn` | リネーム |
+| `<Space>fm` | フォーマット |
+| `[d` / `]d` | 前/次の診断へ移動 |
+| `<Space>e` | 診断フロート表示 |
+| `<Space>q` | 診断リスト表示 |
+
+##### Telescope（ファジーファインダー）
+
+| キー | 動作 |
+|------|------|
+| `<Space>ff` | ファイル検索 |
+| `<Space>fg` | grep検索 |
+| `<Space>fb` | バッファ検索 |
+| `<Space>fh` | ヘルプ検索 |
+| `<Space>fr` | 最近使用ファイル |
+| `<Space>fc` | コマンド検索 |
+| `<Space>fk` | キーマップ検索 |
+| `<Space>gc` | Gitコミット |
+| `<Space>gf` | Gitファイル |
+
+**Telescope内キー:**
+| キー | 動作 |
+|------|------|
+| `<C-n>` / `<C-j>` | 次の項目 |
+| `<C-p>` / `<C-k>` | 前の項目 |
+| `<C-x>` | 水平分割で開く |
+| `<C-v>` | 垂直分割で開く |
+| `<C-t>` | 新規タブで開く |
+| `<C-q>` | Quickfixに送る |
+
+##### 補完操作 (nvim-cmp)
+
+| キー | 動作 |
+|------|------|
+| `<Tab>` | 次の補完候補 / 閉じ括弧を抜ける |
+| `<S-Tab>` | 前の補完候補 |
+| `<CR>` | 補完確定 |
+| `<C-Space>` | 補完メニュー表示 |
+| `<C-e>` | 補完キャンセル |
+| `<C-b>` / `<C-f>` | ドキュメントスクロール |
+
+##### 自動補完機能
+
+**括弧・クォート自動補完 (nvim-autopairs):**
+- `(`, `[`, `{`, `"`, `'`, `` ` `` を入力すると自動で閉じる
+- `<Tab>` で閉じ括弧を抜ける
+- `<M-e>` (Alt+e) で括弧を追加（Fast Wrap）
+
+**HTMLタグ自動補完 (nvim-ts-autotag):**
+- `<div>` と入力すると `</div>` を自動追加
+- 開始タグをリネームすると終了タグも自動変更
+- `</` と入力すると自動で閉じる
+- 対応: html, xhtml, xml, javascript, typescript, jsx, tsx, vue, svelte, php, markdown
+
+##### 囲み文字操作 (nvim-surround)
+
+**追加:**
+| キー | 動作 | 例 |
+|------|------|-----|
+| `ys{motion}{char}` | 囲みを追加 | `ysiw"` → 単語を`"`で囲む |
+| `yss{char}` | 行全体を囲む | `yss)` → 行を`()`で囲む |
+| `ysiw<div>` | HTMLタグで囲む | 単語を`<div></div>`で囲む |
+
+**削除:**
+| キー | 動作 | 例 |
+|------|------|-----|
+| `ds{char}` | 囲みを削除 | `ds"` → `"`を削除 |
+| `dst` | HTMLタグを削除 | |
+
+**変更:**
+| キー | 動作 | 例 |
+|------|------|-----|
+| `cs{old}{new}` | 囲みを変更 | `cs"'` → `"`を`'`に変更 |
+| `cst<span>` | HTMLタグを変更 | |
+
+**ビジュアルモード:**
+| キー | 動作 |
+|------|------|
+| `S{char}` | 選択範囲を囲む |
+
+##### コメントトグル (Comment.nvim)
+
+| キー | モード | 動作 |
+|------|--------|------|
+| `gcc` | Normal | 現在行をコメントトグル |
+| `gc{motion}` | Normal | motion範囲をコメント（例: `gcip` 段落、`gc5j` 5行下まで） |
+| `gbc` | Normal | 現在行をブロックコメント |
+| `gb{motion}` | Normal | motion範囲をブロックコメント |
+| `gc` | Visual | 選択範囲をコメントトグル |
+| `gb` | Visual | 選択範囲をブロックコメント |
+
+##### Git操作 (gitsigns.nvim)
+
+| キー | 動作 |
+|------|------|
+| `]c` | 次のGit変更箇所 |
+| `[c` | 前のGit変更箇所 |
+| `<Space>gs` | hunkをステージ |
+| `<Space>gr` | hunkをリセット |
+| `<Space>gS` | バッファ全体をステージ |
+| `<Space>gu` | ステージ取り消し |
+| `<Space>gR` | バッファ全体をリセット |
+| `<Space>gp` | hunkをプレビュー |
+| `<Space>gb` | blame行表示 |
+| `<Space>gB` | blame表示切替 |
+| `<Space>gd` | diff表示 |
+| `ih` | (text object) hunk選択 |
+
+##### Treesitterテキストオブジェクト・移動
+
+**テキストオブジェクト:**
+| キー | 動作 |
+|------|------|
+| `af` / `if` | 関数の外側/内側 |
+| `ac` / `ic` | クラスの外側/内側 |
+| `aa` / `ia` | パラメータの外側/内側 |
+
+**コード内移動:**
+| キー | 動作 |
+|------|------|
+| `]f` / `[f` | 次/前の関数開始 |
+| `]F` / `[F` | 次/前の関数終了 |
+| `]c` / `[c` | 次/前のクラス開始 |
+| `]C` / `[C` | 次/前のクラス終了 |
+
+**インクリメンタル選択:**
+| キー | 動作 |
+|------|------|
+| `gnn` | 選択開始 |
+| `grn` | ノードを拡大 |
+| `grc` | スコープを拡大 |
+| `grm` | ノードを縮小 |
+
+##### ファイルマネージャー (yazi.nvim)
 
 | キー | 動作 |
 |------|------|
@@ -268,28 +492,83 @@ Neovim内からyaziを呼び出すことができます。
 | `<Space>Y` | カレントディレクトリでyaziを開く |
 | `<Space>fy` | yaziをトグル（前回の状態を復元） |
 
-yaziでファイルを選択すると、Neovimでそのファイルが開きます。
+##### プレビュー機能
 
-### Markdown Preview (peek.nvim)
-
-Markdownファイルをブラウザでライブプレビューできます。
-
-**機能:**
-- ライブプレビュー（リアルタイム更新）
-- 同期スクロール
-- TeX数式対応
-- Mermaid図対応
-- GitHub風スタイル
-
-**キーマッピング:**
+**Markdownプレビュー (peek.nvim):**
 | キー | 動作 |
 |------|------|
 | `<Space>mp` | Markdownプレビューを開く |
 | `<Space>mc` | Markdownプレビューを閉じる |
 
-**コマンド:**
+コマンド: `:PeekOpen`, `:PeekClose`
+
+機能: ライブプレビュー、同期スクロール、TeX数式、Mermaid図、GitHub風スタイル
+
+**HTMLライブプレビュー (live-server.nvim):**
+| キー | 動作 |
+|------|------|
+| `<Space>ls` | Live Serverトグル |
+
+コマンド: `:LiveServerStart`, `:LiveServerStop`, `:LiveServerToggle`
+
+ポート5500でブラウザにライブプレビュー、ファイル保存時に自動リロード
+
+**ブラウザでプレビュー:**
+| キー | 動作 |
+|------|------|
+| `<Space>op` | HTML/Markdownをブラウザで開く |
+
+##### ターミナル操作
+
+| キー | 動作 |
+|------|------|
+| `<Esc><Esc>` | ターミナルモード終了 |
+| `<Space>tt` | ターミナル起動 |
+| `<Space>tv` | ターミナル（垂直分割） |
+| `<Space>th` | ターミナル（水平分割） |
+
+##### その他
+
+| キー | 動作 |
+|------|------|
+| `<Space>=` | ファイル全体をインデント |
+| `[q` / `]q` | 前/次のQuickfixアイテム |
+| `[l` / `]l` | 前/次のLoclistアイテム |
+
+#### 基本設定 (options.lua)
+
+| 設定 | 値 | 説明 |
+|------|-----|------|
+| 行番号 | 相対番号 + 絶対番号 | `relativenumber` + `number` |
+| インデント | 4スペース（言語別調整あり） | Web系/設定ファイルは2スペース |
+| クリップボード | システム共有 | `unnamedplus` |
+| 検索 | 大文字小文字スマート | `ignorecase` + `smartcase` |
+| カラー | True Color対応 | `termguicolors` |
+| Undo | 永続化 | `undofile` |
+| 補完 | LSP最適化 | `menu,menuone,noselect` |
+| 折りたたみ | Treesitterベース | `foldmethod=expr` |
+| grep | ripgrep使用 | `grepprg=rg --vimgrep` |
+
+#### オートコマンド (autocmds.lua)
+
+| 機能 | 説明 |
+|------|------|
+| ヤンクハイライト | コピー時に一瞬ハイライト |
+| カーソル位置復元 | ファイル再オープン時に前回位置へ |
+| 言語別インデント | Web系2スペース、Python/PHP等4スペース |
+| 行末空白削除 | 保存時に自動削除 |
+| ディレクトリ自動作成 | 保存時に親ディレクトリを作成 |
+| Git commit設定 | スペルチェック有効、72文字制限 |
+| ターミナル最適化 | 行番号非表示、自動インサート |
+| 大ファイル最適化 | 100KB以上で機能制限 |
+| ウィンドウリサイズ | 自動で分割サイズ均等化 |
+
+#### コマンド
+
 ```vim
-:PeekOpen   " プレビューを開く
-:PeekClose  " プレビューを閉じる
+:Mason          " LSPサーバー管理画面
+:Lazy           " プラグイン管理画面
+:TSUpdate       " Treesitterパーサー更新
+:checkhealth    " 設定の診断
 ```
 

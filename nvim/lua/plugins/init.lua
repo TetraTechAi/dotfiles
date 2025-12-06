@@ -19,13 +19,20 @@ vim.opt.rtp:prepend(lazypath)
 -- lazy.nvim設定
 require('lazy').setup({
   -- プラグイン設定ファイルの自動読み込み
+  { import = 'plugins.colorscheme' },
+  { import = 'plugins.lualine' },
   { import = 'plugins.treesitter' },
   { import = 'plugins.telescope' },
   { import = 'plugins.lsp' },
   { import = 'plugins.completion' },
+  { import = 'plugins.autopairs' },
+  { import = 'plugins.autotag' },
+  { import = 'plugins.surround' },
+  { import = 'plugins.comment' },
   { import = 'plugins.gitsigns' },
   { import = 'plugins.yazi' },
   { import = 'plugins.peek' },
+  { import = 'plugins.live-server' },
 }, {
   -- lazy.nvim UI設定
   ui = {

@@ -5,9 +5,8 @@
 
 return {
   "toppair/peek.nvim",
-  event = { "VeryLazy" },
   build = "deno task --quiet build:fast",
-  ft = { "markdown" },
+  ft = { "markdown" },  -- Markdownファイルを開いた時にロード
   keys = {
     { "<leader>mp", function() require("peek").open() end, desc = "Markdown Preview: 開く" },
     { "<leader>mc", function() require("peek").close() end, desc = "Markdown Preview: 閉じる" },

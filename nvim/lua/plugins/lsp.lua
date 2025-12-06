@@ -24,21 +24,39 @@ return {
         },
       })
 
-      -- Capabilities設定
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      -- Capabilities設定（nvim-cmpとの連携）
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       -- 自動インストール + ハンドラー設定
       require('mason-lspconfig').setup({
         ensure_installed = {
+          -- スクリプト言語
           'lua_ls',           -- Lua
           'ts_ls',            -- TypeScript/JavaScript
           'pyright',          -- Python
+          'intelephense',     -- PHP
+
+          -- コンパイル言語
           'gopls',            -- Go
           'rust_analyzer',    -- Rust
+          'clangd',           -- C/C++
+
+          -- Web
           'html',             -- HTML
           'cssls',            -- CSS
+          'tailwindcss',      -- Tailwind CSS
+          'emmet_ls',         -- Emmet
+
+          -- データ・設定ファイル
           'jsonls',           -- JSON
           'yamlls',           -- YAML
+          'taplo',            -- TOML
+
+          -- シェル・インフラ
+          'bashls',           -- Bash/Zsh
+          'dockerls',         -- Dockerfile
+          'docker_compose_language_service',  -- Docker Compose
+          'terraformls',      -- Terraform
         },
         automatic_installation = true,
         handlers = {
