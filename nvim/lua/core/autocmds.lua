@@ -38,32 +38,40 @@ autocmd('BufReadPost', {
 -- 3. ファイルタイプ別の設定
 ------------------------------------------------------------------------------
 
--- Web開発: 2スペースインデント（JSONは除外 - ftpluginで管理）
+-- 2スペースインデント: Web開発、設定ファイル
 autocmd('FileType', {
-  group = augroup('web_indent', { clear = true }),
-  pattern = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact',
-              'html', 'css', 'scss', 'yaml', 'vue', 'svelte' },
+  group = augroup('two_space_indent', { clear = true }),
+  pattern = {
+    -- Web
+    'javascript', 'typescript', 'javascriptreact', 'typescriptreact',
+    'html', 'css', 'scss', 'vue', 'svelte',
+    -- 設定ファイル
+    'yaml', 'json', 'jsonc', 'toml', 'xml',
+    -- エディタ設定
+    'lua', 'vim',
+    -- インフラ
+    'terraform', 'hcl', 'dockerfile',
+  },
   callback = function()
     vim.opt_local.tabstop = 2
     vim.opt_local.shiftwidth = 2
     vim.opt_local.softtabstop = 2
     vim.opt_local.expandtab = true
-    vim.opt_local.autoindent = true
-    vim.opt_local.smartindent = true
   end,
-  desc = 'Web開発ファイル: 2スペースインデント',
+  desc = '2スペースインデント',
 })
 
--- Lua: 2スペースインデント
+-- 4スペースインデント: PHP, Python, Go, Rust, C/C++
 autocmd('FileType', {
-  group = augroup('lua_indent', { clear = true }),
-  pattern = 'lua',
+  group = augroup('four_space_indent', { clear = true }),
+  pattern = { 'php', 'python', 'go', 'rust', 'c', 'cpp' },
   callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.softtabstop = 2
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.expandtab = true
   end,
-  desc = 'Luaファイル: 2スペースインデント',
+  desc = '4スペースインデント',
 })
 
 -- Markdown: テキスト編集向け設定

@@ -13,23 +13,56 @@ return {
     require('nvim-treesitter.configs').setup({
       -- 自動インストールする言語パーサー
       ensure_installed = {
-        'bash',
-        'c',
-        'css',
-        'go',
-        'html',
-        'javascript',
-        'json',
+        -- スクリプト言語
         'lua',
-        'markdown',
-        'markdown_inline',
-        'python',
-        'rust',
+        'javascript',
         'typescript',
         'tsx',
+        'python',
+        'php',
+        'ruby',
+
+        -- コンパイル言語
+        'go',
+        'gomod',
+        'gosum',
+        'rust',
+        'c',
+        'cpp',
+
+        -- Web
+        'html',
+        'css',
+        'scss',
+
+        -- データ・設定ファイル
+        'json',
+        'jsonc',
+        'yaml',
+        'toml',
+        'xml',
+
+        -- シェル・インフラ
+        'bash',
+        'dockerfile',
+        'terraform',
+        'hcl',
+
+        -- ドキュメント
+        'markdown',
+        'markdown_inline',
+
+        -- エディタ
         'vim',
         'vimdoc',
-        'yaml',
+        'regex',
+        'query',  -- Treesitterクエリ
+
+        -- Git
+        'git_config',
+        'gitcommit',
+        'gitignore',
+        'diff',
       },
 
       -- パーサーを同期的にインストール（起動時のみ）
@@ -107,8 +140,5 @@ return {
       },
     })
 
-    -- フォールディング設定（options.luaで既に設定済み、念のため）
-    vim.opt.foldmethod = 'expr'
-    vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
   end,
 }
