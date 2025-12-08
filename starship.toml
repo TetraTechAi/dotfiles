@@ -1,4 +1,5 @@
 add_newline = false
+command_timeout = 1000
 
 [character]
 error_symbol = "[❯](bold red)"
@@ -15,3 +16,30 @@ style = 'bold blue'
 
 [battery]
 disabled = true
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style) "
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+
+[nodejs]
+symbol = " "
+format = "[$symbol($version)]($style) "
+
+[python]
+symbol = " "
+format = "[$symbol($version)]($style) "
+
+[rust]
+symbol = " "
+format = "[$symbol($version)]($style) "
+
+[golang]
+symbol = " "
+format = "[$symbol($version)]($style) "
+
+[cmd_duration]
+min_time = 2000
+format = "took [$duration]($style) "
