@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/nakayamaseiya/.claude/scripts/deny-check.sh"
+            "command": "~/.claude/scripts/deny-check.sh"
           }
         ]
       }
@@ -38,7 +38,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/nakayamaseiya/.claude/scripts/completion-notification.sh"
+            "command": "~/.claude/scripts/completion-notification.sh"
           }
         ]
       }
@@ -48,7 +48,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/nakayamaseiya/.claude/scripts/notification.sh"
+            "command": "~/.claude/scripts/notification.sh"
           }
         ]
       }
