@@ -9,6 +9,7 @@
 
 # Taps
 tap "aws/tap"
+tap "daipeihust/tap"       # im-select用
 tap "homebrew/services"
 tap "sanemat/font"
 
@@ -21,6 +22,7 @@ brew "sheldon"            # Zshプラグインマネージャー
 brew "starship"           # プロンプトカスタマイズ
 brew "tmux"               # ターミナルマルチプレクサ
 brew "zoxide"             # スマートcd
+brew "im-select"          # IME切り替えツール（Neovim用）
 
 # ファイル操作・検索
 brew "yazi"               # ターミナルファイルマネージャー

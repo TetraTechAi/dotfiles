@@ -1,13 +1,17 @@
 {
   "modelSettings": {
-    "temperature": 0.0,
+    "temperature": 0,
     "maxTokens": 8192
   },
   "toolSettings": {
     "bash": {
-      "timeout" : 120000,
+      "timeout": 120000,
       "sandboxEnabled": true,
-      "allowedCommands": ["npm", "git", "node"]
+      "allowedCommands": [
+        "npm",
+        "git",
+        "node"
+      ]
     }
   },
   "permissions": {
@@ -61,5 +65,6 @@
         ]
       }
     ]
-  }
+  },
+  "alwaysThinkingEnabled": true
 }

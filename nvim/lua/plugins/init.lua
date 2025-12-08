@@ -34,6 +34,8 @@ require('lazy').setup({
   { import = 'plugins.peek' },
   { import = 'plugins.live-server' },
   { import = 'plugins.copilot' },
+  { import = 'plugins.im-select' },
+  { import = 'plugins.alpha' },
 }, {
   -- lazy.nvim UI設定
   ui = {
