@@ -1,10 +1,10 @@
 {
+  "env": {
+    "MAX_THINKING_TOKENS": "10000"
+  },
   "permissions": {
     "allow": [
       "Read(~/.zshrc)"
-    ],
-    "ask": [
-      "Bash(git push:*)"
     ],
     "deny": [
       "Bash(git commit:*)",
@@ -16,6 +16,9 @@
       "Bash(chmod 777:*)",
       "Bash(rm -rf /:*)",
       "Bash(gh repo delete:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)"
     ]
   },
   "hooks": {
@@ -51,7 +54,5 @@
       }
     ]
   },
-  "env": {
-    "MAX_THINKING_TOKENS": "10000"
-  }
+  "alwaysThinkingEnabled": true
 }
