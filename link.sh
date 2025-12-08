@@ -35,6 +35,7 @@ LINKS=(
   "$HOME/.config/yazi:$DOTFILE_DIR/yazi"
   "$HOME/.claude/settings.json:$DOTFILE_DIR/.claude/settings.json"
   "$HOME/.claude/CLAUDE.md:$DOTFILE_DIR/.claude/CLAUDE.md"
+  "$HOME/.claude/scripts:$DOTFILE_DIR/.claude/scripts"
 )
 
 # 色定義
