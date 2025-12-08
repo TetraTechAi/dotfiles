@@ -300,6 +300,8 @@ yy
 | peek.nvim | Markdownプレビュー |
 | live-server.nvim | HTMLライブプレビュー |
 | copilot.lua | GitHub Copilot AI補完 |
+| im-select.nvim | IME自動切り替え |
+| alpha-nvim | スタートアップ画面 |
 
 #### キーマッピング
 
@@ -312,6 +314,7 @@ yy
 | `<Esc>` | Normal | 検索ハイライト解除 |
 | `<C-s>` | Normal/Insert | ファイル保存 |
 | `<C-q>` | Normal | 終了 |
+| `jk` | Insert | ESC（ノーマルモードに戻る） |
 | `J` | Visual | 選択行を下に移動 |
 | `K` | Visual | 選択行を上に移動 |
 | `<` / `>` | Visual | インデント増減（選択維持） |
@@ -559,6 +562,31 @@ AIによるコード補完。初回は `:Copilot auth` でGitHubアカウント�
 :Copilot toggle   " Copilotをトグル
 :Copilot panel    " パネルを開く
 ```
+
+##### IME自動切り替え (im-select.nvim)
+
+日本語入力時の利便性向上。依存: `brew install im-select`
+
+| 状態遷移 | 動作 |
+|----------|------|
+| Insert → Normal | 自動で半角英数に切り替え |
+| Normal → Insert | 前回のIME状態を復元 |
+| コマンドライン離脱 | 自動で半角英数に切り替え |
+
+##### スタートアップ画面 (alpha-nvim)
+
+Neovim起動時に表示されるダッシュボード。
+
+| キー | 動作 |
+|------|------|
+| `e` | 新規ファイル |
+| `f` | ファイル検索 (Telescope) |
+| `r` | 最近のファイル (Telescope) |
+| `g` | Git status (Telescope) |
+| `p` | プラグイン管理 (Lazy) |
+| `m` | Mason (LSP管理) |
+| `c` | 設定ファイル |
+| `q` | 終了 |
 
 ##### その他
 

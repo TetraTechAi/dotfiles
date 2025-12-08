@@ -19,6 +19,9 @@ vim.keymap.set({'n', 'i'}, '<C-s>', '<cmd>w<CR><Esc>', { desc = 'ファイル保
 -- 終了
 vim.keymap.set('n', '<C-q>', '<cmd>q<CR>', { desc = '終了' })
 
+-- jkでESC（インサートモード終了）
+vim.keymap.set('i', 'jk', '<Esc>', { desc = 'ESC (jk)' })
+
 -- ビジュアルモードで行移動
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = '選択行を下に移動' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = '選択行を上に移動' })
