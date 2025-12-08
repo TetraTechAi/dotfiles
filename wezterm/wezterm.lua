@@ -195,6 +195,11 @@ config.keys = {
     -- Claude Code用設定
     -- ------------------------------------------------------------------------
     { key = 'Enter', mods = 'SHIFT', action = wezterm.action.SendString('\n') },  -- Shift+Enter: 改行文字を送信（複数行入力用）
+
+    -- ------------------------------------------------------------------------
+    -- 背景切り替え
+    -- ------------------------------------------------------------------------
+    { key = 'b', mods = 'CMD', action = wezterm.action.EmitEvent("toggle-background") },  -- Cmd+b: 背景モード切り替え（透明 ↔ blur）
 }
 
 
@@ -202,6 +207,23 @@ config.keys = {
 -- ============================================================================
 -- イベントハンドラー
 -- ============================================================================
+
+-- 背景モード切り替えイベント (Cmd+b で透明 ↔ blur を切り替え)
+wezterm.on("toggle-background", function(window, pane)
+  local overrides = window:get_config_overrides() or {}
+
+  if overrides.macos_window_background_blur == 20 then
+    -- blur -> transparent
+    overrides.window_background_opacity = 0.75
+    overrides.macos_window_background_blur = 0
+  else
+    -- transparent -> blur
+    overrides.window_background_opacity = 0.85
+    overrides.macos_window_background_blur = 20
+  end
+
+  window:set_config_overrides(overrides)
+end)
 
 -- 設定ファイルがリロードされた時にログに通知を記録
 wezterm.on('window-config-reloaded', function(window, pane)
