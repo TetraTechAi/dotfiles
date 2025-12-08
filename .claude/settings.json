@@ -1,37 +1,22 @@
 {
-  "modelSettings": {
-    "temperature": 0,
-    "maxTokens": 8192
-  },
-  "toolSettings": {
-    "bash": {
-      "timeout": 120000,
-      "sandboxEnabled": true,
-      "allowedCommands": [
-        "npm",
-        "git",
-        "node"
-      ]
-    }
-  },
   "permissions": {
     "allow": [
-      "Read(~/.zhrc)"
+      "Read(~/.zshrc)"
     ],
     "ask": [
       "Bash(git push:*)"
     ],
     "deny": [
-      "Bash(git commit*)",
-      "Bash(git push*)",
-      "Bash(sudo *)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(sudo:*)",
+      "Read(.env)",
       "Read(.env.*)",
-      "Bash(git config *)",
-      "Bash(chmod 777 *)",
-      "Bash(rm -rf /*)",
-      "Bash(gh repo delete*)"
-    ],
-    "defaultMode": "plan"
+      "Bash(git config:*)",
+      "Bash(chmod 777:*)",
+      "Bash(rm -rf /:*)",
+      "Bash(gh repo delete:*)"
+    ]
   },
   "hooks": {
     "PreToolUse": [
@@ -66,5 +51,7 @@
       }
     ]
   },
-  "alwaysThinkingEnabled": true
+  "env": {
+    "MAX_THINKING_TOKENS": "10000"
+  }
 }
