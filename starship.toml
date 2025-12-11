@@ -43,3 +43,4 @@ format = "[$symbol($version)]($style) "
 [cmd_duration]
 min_time = 2000
 format = "took [$duration]($style) "
+
