@@ -28,6 +28,7 @@ return {
       dashboard.button("e", "  New file", ":ene <BAR> startinsert<CR>"),
       dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
       dashboard.button("r", "  Recent files", ":Telescope oldfiles<CR>"),
+      dashboard.button("o", "  Obsidian Vault", ":cd ~/obsidian/main_vault | Yazi<CR>"),
       dashboard.button("g", "  Git status", ":Telescope git_status<CR>"),
       dashboard.button("p", "  Plugins", ":Lazy<CR>"),
       dashboard.button("m", "  Mason", ":Mason<CR>"),

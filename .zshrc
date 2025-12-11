@@ -215,6 +215,27 @@ bindkey '^X' fzf-src
 # Starshipプロンプト
 eval "$(starship init zsh)"
 
+# コマンド実行時刻を表示（Starship初期化後にフックを追加）
+autoload -Uz add-zsh-hook
+_cmd_executed=0
+
+# コマンド開始時刻を表示
+_show_start_time() {
+  _cmd_executed=1
+  echo -e "\e[32m[開始 $(date '+%H:%M:%S')]\e[0m"
+}
+
+# コマンド終了時刻を表示
+_show_end_time() {
+  if [[ $_cmd_executed -eq 1 ]]; then
+    echo -e "\e[32m[終了 $(date '+%H:%M:%S')]\e[0m"
+    _cmd_executed=0
+  fi
+}
+
+add-zsh-hook preexec _show_start_time
+add-zsh-hook precmd _show_end_time
+
 
 # zoxide（スマートcd）
 eval "$(zoxide init zsh)"

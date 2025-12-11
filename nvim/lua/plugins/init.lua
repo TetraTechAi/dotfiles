@@ -36,6 +36,8 @@ require('lazy').setup({
   { import = 'plugins.copilot' },
   { import = 'plugins.im-select' },
   { import = 'plugins.alpha' },
+  { import = 'plugins.colorizer' },
+  { import = 'plugins.obsidian' },
 }, {
   -- lazy.nvim UI設定
   ui = {
