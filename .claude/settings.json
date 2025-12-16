@@ -4,7 +4,9 @@
   },
   "permissions": {
     "allow": [
-      "Read(~/.zshrc)"
+      "Read(~/.zshrc)",
+      "git show *",
+      "git log *"
     ],
     "deny": [
       "Bash(git commit:*)",
