@@ -80,8 +80,8 @@ vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { desc = 'LSP: シグ�
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP: コードアクション' })
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'LSP: リネーム' })
 
--- フォーマット
-vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format, { desc = 'LSP: フォーマット' })
+-- フォーマット（conform.nvim で設定）
+-- vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format, { desc = 'LSP: フォーマット' })
 
 -- 診断
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = '前の診断へ移動' })

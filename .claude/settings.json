@@ -4,9 +4,13 @@
   },
   "permissions": {
     "allow": [
-      "Read(~/.zshrc)",
-      "git show *",
-      "git log *"
+      "Read(*)",
+      "Grep(*)",
+      "Glob(*)",
+      "Task(*)",
+      "TodoWrite(*)",
+      "Bash(git show:*)",
+      "Bash(git log:*)"
     ],
     "deny": [
       "Bash(git commit:*)",
@@ -16,11 +20,8 @@
       "Read(.env.*)",
       "Bash(git config:*)",
       "Bash(chmod 777:*)",
-      "Bash(rm -rf /:*)",
+      "Bash(rm -rf /*)",
       "Bash(gh repo delete:*)"
-    ],
-    "ask": [
-      "Bash(git push:*)"
     ]
   },
   "hooks": {
@@ -55,6 +56,5 @@
         ]
       }
     ]
-  },
-  "alwaysThinkingEnabled": true
+  }
 }
