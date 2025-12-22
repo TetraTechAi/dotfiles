@@ -10,6 +10,40 @@ return {
       -- Mason: LSPサーバー管理
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      -- Mason Tool Installer: フォーマッター・リンターの自動インストール
+      {
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        config = function()
+          require('mason-tool-installer').setup({
+            ensure_installed = {
+              -- フォーマッター
+              'prettierd',       -- JS/TS/HTML/CSS/JSON/YAML/Markdown
+              'prettier',        -- prettierdのフォールバック
+              'black',           -- Python
+              'isort',           -- Python import整理
+              'stylua',          -- Lua
+              'goimports',       -- Go
+              'shfmt',           -- Shell
+              'clang-format',    -- C/C++
+              'php-cs-fixer',    -- PHP
+
+              -- リンター
+              'eslint_d',        -- JS/TS
+              'ruff',            -- Python
+              'mypy',            -- Python型チェック
+              'golangci-lint',   -- Go
+              'luacheck',        -- Lua
+              'shellcheck',      -- Shell
+              'hadolint',        -- Dockerfile
+              'yamllint',        -- YAML
+              'markdownlint',    -- Markdown
+              'phpcs',           -- PHP
+            },
+            auto_update = false,
+            run_on_start = true,
+          })
+        end,
+      },
     },
     config = function()
       -- Mason setup

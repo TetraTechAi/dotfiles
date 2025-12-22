@@ -237,45 +237,44 @@ add-zsh-hook preexec _show_start_time
 add-zsh-hook precmd _show_end_time
 
 
-# zoxide（スマートcd）
+# zoxide（スマートcd）+ cd後に自動でls実行
+# 参考: https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh)"
-alias cd='z'
 
-# exa（モダンなls代替）
-#if [[ $(command -v exa) ]]; then
-#  alias ls='exa --git --icons'
-#  alias ll='exa -l --git --icons'
-#  alias la='exa -la --git --icons'
-#  alias lta='exa -lT --git --icons'
-#  alias lt='exa -T --git --icons'
-#fi
-
-# cd後に自動でls実行
-cdls()
-{
-  \cd "$@" && ls
+# zoxideのzコマンドをラップして、移動後にlsを実行
+zls() {
+  z "$@" && ls
 }
-alias cd='cdls'
+alias cd='zls'
 
-# CodeWhisperer post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
+# 純粋なzoxide（ls無し）が必要な場合用
+alias zz='z'
 
-PATH=~/.console-ninja/.bin:$PATH
+############
+# 外部ツールPATH設定
+############
+
+# pyenv（Pythonバージョン管理）
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# Added by Windsurf
-export PATH="/Users/nakayamaseiya/.codeium/windsurf/bin:$PATH"
+# 開発ツール
+PATH=~/.console-ninja/.bin:$PATH                              # Console Ninja
+export PATH="/Users/nakayamaseiya/.codeium/windsurf/bin:$PATH"  # Windsurf
+export PATH="$PATH:/Users/nakayamaseiya/.lmstudio/bin"          # LM Studio CLI
 
+# コンテナ関連
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/nakayamaseiya/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
+# その他
 . "$HOME/.local/bin/env"
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/nakayamaseiya/.lmstudio/bin"
-# End of LM Studio CLI section
+############
+# 外部ツール連携（末尾に配置）
+############
 
-#source /Users/nakayamaseiya/work/git/github.com/TetraTechAi/claude-code-test/scripts/claude-optimization.sh
+# CodeWhisperer post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"

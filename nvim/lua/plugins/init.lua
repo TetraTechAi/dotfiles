@@ -38,6 +38,9 @@ require('lazy').setup({
   { import = 'plugins.alpha' },
   { import = 'plugins.colorizer' },
   { import = 'plugins.obsidian' },
+  { import = 'plugins.conform' },    -- フォーマッター
+  { import = 'plugins.lint' },       -- リンター
+  { import = 'plugins.dap' },        -- デバッガー
 }, {
   -- lazy.nvim UI設定
   ui = {
