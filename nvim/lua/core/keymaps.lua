@@ -70,7 +70,7 @@ vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'LSP: 定義へジャ
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'LSP: 宣言へジャンプ' })
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'LSP: 参照一覧' })
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'LSP: 実装へジャンプ' })
-vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { desc = 'LSP: 型定義へジャンプ' })
+vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, { desc = 'LSP: 型定義へジャンプ' })
 
 -- ホバー・シグネチャヘルプ
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'LSP: ホバー情報表示' })
