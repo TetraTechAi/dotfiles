@@ -131,7 +131,11 @@ run_sketchybar_setup() {
   fi
 
   # App fonts
-  mkdir -p "$HOME/Library/Fonts"
+  if [ "$DRY_RUN" = true ]; then
+    log_info "[DRY-RUN] Would ensure font directory exists: $HOME/Library/Fonts"
+  else
+    mkdir -p "$HOME/Library/Fonts"
+  fi
   for font_url in \
     "https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v2.0.5/sketchybar-app-font.ttf" \
     "https://github.com/SoichiroYamane/sketchybar-app-font-bg/releases/download/v0.0.2/sketchybar-app-font-bg.ttf"
