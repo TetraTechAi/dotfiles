@@ -118,24 +118,37 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 # ============================================================================
 
 # Sheldon（Zshプラグインマネージャー）
-eval "$(sheldon source)"
+if command -v sheldon >/dev/null 2>&1; then
+  eval "$(sheldon source)"
+fi
 
 # pyenv
-eval "$(pyenv init -)"
+if command -v pyenv >/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # Starship（プロンプト）
-eval "$(starship init zsh)"
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
 
 # zoxide（スマートcd）
-eval "$(zoxide init zsh)"
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
 
 # ============================================================================
 # エイリアス
 # ============================================================================
 
 # ls
-alias ls='ls -l --color=auto'
-alias ll='ls -alF --color=auto'
+if command ls --color=auto -d . >/dev/null 2>&1; then
+  alias ls='ls -l --color=auto'
+  alias ll='ls -alF --color=auto'
+else
+  alias ls='ls -lG'
+  alias ll='ls -alFG'
+fi
 
 # ディレクトリ移動
 alias d='cd ~/dotfiles'
@@ -149,8 +162,10 @@ alias vim='nvim'
 alias lg='lazygit'
 
 # cd（zoxide + ls）
-alias cd='zls'
-alias zz='z'
+if command -v z >/dev/null 2>&1; then
+  alias cd='zls'
+  alias zz='z'
+fi
 
 # VPN
 alias vpns='check_vpn_status'
@@ -164,8 +179,10 @@ alias gia='create_gitignore'
 # 略語展開（abbr）
 # ============================================================================
 
-abbr -S -qq vpn='vpnutil' >>/dev/null
-abbr -S -qq -='cd -' >>/dev/null
+if command -v abbr >/dev/null 2>&1; then
+  abbr -S -qq vpn='vpnutil' >>/dev/null
+  abbr -S -qq -='cd -' >>/dev/null
+fi
 
 # ============================================================================
 # 関数
@@ -413,13 +430,13 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/nakayamaseiya/.rd/bin:$PATH"
+[[ -d "$HOME/.rd/bin" ]] && export PATH="$HOME/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/nakayamaseiya/.lmstudio/bin"
+[[ -d "$HOME/.lmstudio/bin" ]] && export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
 # >>> AGI Cockpit >>>
-export PATH="$HOME/.agi-tools/data/cockpit/master/bin:$PATH"
+[[ -d "$HOME/.agi-tools/data/cockpit/master/bin" ]] && export PATH="$HOME/.agi-tools/data/cockpit/master/bin:$PATH"
 # <<< AGI Cockpit <<<
