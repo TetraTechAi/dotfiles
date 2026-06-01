@@ -26,7 +26,9 @@ format_file "$direct_file"
 patch_command=$(printf '%s' "$input" | jq -r '.tool_input.command // empty' 2>/dev/null || printf '')
 
 printf '%s\n' "$patch_command" |
-  sed -n 's/^\*\*\* \(Add\|Update\) File: //p' |
+  sed -n \
+    -e 's/^\*\*\* Add File: //p' \
+    -e 's/^\*\*\* Update File: //p' |
   while IFS= read -r file_path; do
     format_file "$file_path"
   done
