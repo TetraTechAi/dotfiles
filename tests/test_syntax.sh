@@ -64,4 +64,15 @@ while IFS= read -r lua_file; do
   assert_eq "Lua 構文: ${lua_file#$REPO_DIR/}" "0" "$?"
 done < <(find "$REPO_DIR/nvim" "$REPO_DIR/sketchybar" -name '*.lua' -type f | sort)
 
+echo ""
+bold "--- Yazi ---"
+
+if ! command -v yazi >/dev/null 2>&1; then
+  red "Error: yazi がインストールされていません"
+  exit 1
+fi
+
+YAZI_CONFIG_HOME="$REPO_DIR/yazi" yazi --version >/dev/null
+assert_eq "Yazi 設定を読み込める" "0" "$?"
+
 finish_tests
