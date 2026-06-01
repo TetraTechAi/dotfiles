@@ -1,4 +1,13 @@
 {
+  "scripts": {
+    "test": "bash tests/run_all.sh",
+    "test:syntax": "bash tests/test_syntax.sh",
+    "test:deny-check": "bash tests/test_deny_check.sh",
+    "test:link": "bash tests/test_link.sh",
+    "test:setup": "bash tests/test_setup.sh",
+    "test:zshrc": "bash tests/test_zshrc.sh",
+    "test:format-hook": "bash tests/test_format_edited_files.sh"
+  },
   "dependencies": {
     "cz-git": "^1.12.0"
   }
