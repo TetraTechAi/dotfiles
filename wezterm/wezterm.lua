@@ -37,7 +37,7 @@ config.check_for_updates_interval_seconds = 86400
 config.default_cwd = wezterm.home_dir
 
 -- URLをクリック可能に設定
-config.hyperlink_rules = wezterm.default_hyperlink_rules()
+-- config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 -- ============================================================================
 -- フォント設定
