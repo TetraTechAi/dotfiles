@@ -36,8 +36,8 @@ config.check_for_updates_interval_seconds = 86400
 -- デフォルトの作業ディレクトリをホームディレクトリに設定
 config.default_cwd = wezterm.home_dir
 
--- URLをクリック可能に設定
--- config.hyperlink_rules = wezterm.default_hyperlink_rules()
+-- URLハイパーリンクを無効化（空テーブルでデフォルトルールを上書き）
+config.hyperlink_rules = {}
 
 -- ============================================================================
 -- フォント設定
